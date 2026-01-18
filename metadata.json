@@ -1,0 +1,8 @@
+{
+  "name": "SureBets Odds",
+  "description": "A comprehensive football predictions, live odds, and arbitrage platform. Features advanced Poisson models, real-time market tracking, and AI-powered betting advice.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ]
+}
