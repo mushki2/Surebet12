@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Match } from '../types.ts';
+import { Match } from '../types';
 
 interface MatchCardProps {
   match: Match;

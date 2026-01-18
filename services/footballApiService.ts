@@ -1,5 +1,5 @@
 
-import { Match, Source } from "../types.ts";
+import { Match, Source } from "../types";
 
 const BASE_URL = 'https://api.football-data.org/v4';
 

@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar.tsx';
-import Dashboard from './pages/Dashboard.tsx';
-import Arbitrage from './pages/Arbitrage.tsx';
-import CustomPredictions from './pages/CustomPredictions.tsx';
-import MatchDetails from './pages/MatchDetails.tsx';
-import AdminPanel from './pages/AdminPanel.tsx';
-import Casino from './pages/Casino.tsx';
-import MatchCard from './components/MatchCard.tsx';
-import { Match, Source } from './types.ts';
-import { fetchLeagueData } from './services/geminiService.ts';
-import { fetchFromFootballData } from './services/footballApiService.ts';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import Arbitrage from './pages/Arbitrage';
+import CustomPredictions from './pages/CustomPredictions';
+import MatchDetails from './pages/MatchDetails';
+import AdminPanel from './pages/AdminPanel';
+import Casino from './pages/Casino';
+import MatchCard from './components/MatchCard';
+import { Match, Source } from './types';
+import { fetchLeagueData } from './services/geminiService';
+import { fetchFromFootballData } from './services/footballApiService';
 
 const generateMockStandings = (league: string, teams: string[]) => {
   return teams.map((team, i) => ({

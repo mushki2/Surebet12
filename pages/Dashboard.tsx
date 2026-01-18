@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo } from 'react';
-import MatchCard from '../components/MatchCard.tsx';
-import { Match, Source } from '../types.ts';
+import MatchCard from '../components/MatchCard';
+import { Match, Source } from '../types';
 
 interface DashboardProps {
   matches: Match[];

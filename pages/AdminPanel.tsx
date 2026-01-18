@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { parseStandingsCSV, parseMatchesCSV } from '../services/csvService.ts';
+import { parseStandingsCSV, parseMatchesCSV } from '../services/csvService';
 
 interface AdminPanelProps {
   onDataUpdate: () => void;

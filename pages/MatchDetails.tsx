@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Match } from '../types.ts';
+import { Match } from '../types';
 
 interface MatchDetailsProps {
   match: Match;
@@ -42,7 +42,16 @@ const getExtendedHistory = (match: Match) => {
 const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
   const [showOddsDropdown, setShowOddsDropdown] = useState(false);
   const history = getExtendedHistory(match);
-  const h2h = match.h2h || { wins: { home: 0, draws: 0, away: 0 }, stats: { possession: { home: 50, away: 50 }, cleanSheets: { home: 0, away: 0 } } };
+  
+  // Ensure the fallback strictly matches the Match['h2h'] interface expectations
+  const h2h = match.h2h || { 
+    wins: { home: 0, draws: 0, away: 0 }, 
+    stats: { 
+      possession: { home: 50, away: 50 }, 
+      cleanSheets: { home: 0, away: 0 },
+      avgGoals: { home: 1.8, away: 1.4 } // Added missing required property for fallback
+    } 
+  };
 
   // Calculate H2H Win Rates
   const totalGames = history.length;
@@ -131,7 +140,7 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
 
             {/* Dominance Multi-Bar */}
             <div className="space-y-4">
-              <div className="flex h-5 w-full rounded-xl overflow-hidden bg-gray-950 border border-gray-800 shadow-inner">
+              <div className="flex h-5 w-full rounded-xl overflow-hidden bg-gray-950 border border-gray-800 shadow-inner shadow-black/50">
                 <div 
                   className="bg-blue-600 h-full flex items-center justify-center text-[10px] font-black text-white transition-all duration-1000 shadow-[inset_-4px_0_8px_rgba(0,0,0,0.2)]"
                   style={{ width: `${homeWinPct}%` }}
