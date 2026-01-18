@@ -1,10 +1,20 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { Match, Source } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Helper to get AI instance safely
+const getAI = () => {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey || apiKey === 'undefined') {
+    console.warn("Gemini API key is missing. AI features will be disabled.");
+    return null;
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export async function fetchLeagueData(): Promise<{ matches: Match[], sources: Source[] }> {
+  const ai = getAI();
+  if (!ai) return { matches: [], sources: [] };
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -107,6 +117,9 @@ export async function fetchLeagueData(): Promise<{ matches: Match[], sources: So
 }
 
 export async function getBettingAdvice(match: Match): Promise<string> {
+  const ai = getAI();
+  if (!ai) return "AI advisor is currently offline. Please check back later.";
+
   try {
     const probs = match.probabilities || { home: 0, draw: 0, away: 0 };
     const preds = match.predictions || { score: 'N/A', over25: 0 };

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Match } from '../types';
 
@@ -43,17 +42,15 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
   const [showOddsDropdown, setShowOddsDropdown] = useState(false);
   const history = getExtendedHistory(match);
   
-  // Ensure the fallback strictly matches the Match['h2h'] interface expectations
   const h2h = match.h2h || { 
     wins: { home: 0, draws: 0, away: 0 }, 
     stats: { 
       possession: { home: 50, away: 50 }, 
       cleanSheets: { home: 0, away: 0 },
-      avgGoals: { home: 1.8, away: 1.4 } // Added missing required property for fallback
+      avgGoals: { home: 1.8, away: 1.4 }
     } 
   };
 
-  // Calculate H2H Win Rates
   const totalGames = history.length;
   const homeWins = history.filter(h => h.winner === 'home').length;
   const awayWins = history.filter(h => h.winner === 'away').length;
@@ -63,7 +60,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
   const awayWinPct = Math.round((awayWins / totalGames) * 100);
   const drawPct = 100 - homeWinPct - awayWinPct;
 
-  // Mock Odds for the dropdown
   const generateMockOdds = () => {
     return [
       { name: 'Bet365', h: 2.10, d: 3.40, a: 3.50 },
@@ -85,7 +81,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
         Return to Dashboard
       </button>
 
-      {/* Hero Section */}
       <div className="bg-gray-950 rounded-2xl p-6 md:p-10 border border-gray-900 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-indigo-500 to-orange-600 opacity-50"></div>
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
@@ -125,7 +120,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-8 space-y-8">
-          {/* Head to Head Visual Section */}
           <section className="bg-gray-900 rounded-2xl border border-gray-800 p-6 md:p-8 space-y-8">
             <div className="flex justify-between items-end">
               <div>
@@ -138,7 +132,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
               </div>
             </div>
 
-            {/* Dominance Multi-Bar */}
             <div className="space-y-4">
               <div className="flex h-5 w-full rounded-xl overflow-hidden bg-gray-950 border border-gray-800 shadow-inner shadow-black/50">
                 <div 
@@ -167,7 +160,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
               </div>
             </div>
 
-            {/* Comparison Gauges */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
               <div className="space-y-4">
                 <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center">
@@ -205,7 +197,6 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
             </div>
           </section>
 
-          {/* Full History List */}
           <section>
             <h3 className="text-[11px] font-black text-white uppercase tracking-widest mb-4 flex items-center">
               <span className="w-1 h-3.5 bg-indigo-500 mr-2"></span>
@@ -238,9 +229,7 @@ const MatchDetails: React.FC<MatchDetailsProps> = ({ match, onBack }) => {
           </section>
         </div>
 
-        {/* Sidebar */}
         <div className="lg:col-span-4 space-y-6">
-          {/* Market Odds Dropdown */}
           <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
             <button 
               onClick={() => setShowOddsDropdown(!showOddsDropdown)}
