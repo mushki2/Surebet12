@@ -7,6 +7,8 @@ import CustomPredictions from './pages/CustomPredictions';
 import MatchDetails from './pages/MatchDetails';
 import AdminPanel from './pages/AdminPanel';
 import Casino from './pages/Casino';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import MatchCard from './components/MatchCard';
 import { Match, Source } from './types';
 import { fetchLeagueData } from './services/geminiService';
@@ -159,6 +161,8 @@ const App: React.FC = () => {
       case 'arbitrage': return <Arbitrage />;
       case 'casino': return <Casino />;
       case 'admin': return <AdminPanel onDataUpdate={loadDataFromStorage} />;
+      case 'login': return <Login onSuccess={() => setActiveTab('home')} onSwitchToSignUp={() => setActiveTab('signup')} />;
+      case 'signup': return <SignUp onSuccess={() => setActiveTab('home')} onSwitchToLogin={() => setActiveTab('login')} />;
       case 'match-details':
         return selectedMatch ? <MatchDetails match={selectedMatch} onBack={() => setActiveTab('home')} /> : null;
       default: return null;
