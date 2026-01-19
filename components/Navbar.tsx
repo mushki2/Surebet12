@@ -19,12 +19,8 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
     return () => unsubscribe();
   }, []);
 
-  const handleLogin = async () => {
-    try {
-      await signInWithGoogle();
-    } catch (error) {
-      console.error("Login failed", error);
-    }
+  const handleLogin = () => {
+    setActiveTab('login');
   };
 
   const handleLogout = async () => {
@@ -95,14 +91,24 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
                 {user.photoURL && <img src={user.photoURL} alt="User" className="h-6 w-6 rounded-full border border-white/10" />}
               </div>
             ) : (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleLogin}
-                className="bg-blue-600 text-white text-[9px] font-black uppercase px-4 py-1.5 rounded shadow-lg shadow-blue-500/20 hover:bg-blue-500 transition-colors"
-              >
-                Login
-              </motion.button>
+              <div className="flex items-center space-x-2">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveTab('signup')}
+                  className={`text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded transition-all ${activeTab === 'signup' ? 'text-blue-400 bg-blue-400/5' : 'text-slate-500 hover:text-white'}`}
+                >
+                  Sign Up
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveTab('login')}
+                  className={`bg-blue-600 text-white text-[9px] font-black uppercase px-4 py-1.5 rounded shadow-lg shadow-blue-500/20 hover:bg-blue-500 transition-all ${activeTab === 'login' ? 'ring-2 ring-blue-400 ring-offset-2 ring-offset-slate-950' : ''}`}
+                >
+                  Login
+                </motion.button>
+              </div>
             )}
 
             <div className="flex items-center md:hidden">
