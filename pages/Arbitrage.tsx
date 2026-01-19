@@ -1,118 +1,116 @@
 import React, { useState } from 'react';
-import { ArbOpportunity } from '../types';
+import { motion } from 'framer-motion';
 
 const Arbitrage: React.FC = () => {
   const [stake, setStake] = useState<number>(1000);
+  const [odds1, setOdds1] = useState<number>(2.10);
+  const [odds2, setOdds2] = useState<number>(2.05);
+
+  const profit = (1 / (1/odds1 + 1/odds2));
+  const isArb = profit > 1;
+  const margin = ((1 - (1/profit)) * 100).toFixed(2);
   
-  const mockArbs: ArbOpportunity[] = [
-    {
-      id: 'arb1',
-      match: 'Man Utd vs Liverpool',
-      sport: 'Soccer',
-      roi: 2.15,
-      timestamp: new Date().toISOString(),
-      outcomes: [
-        { name: '1 (Home Win)', odds: 2.55, bookie: 'Bet365' },
-        { name: 'X (Draw)', odds: 3.40, bookie: 'Pinnacle' },
-        { name: '2 (Away Win)', odds: 3.10, bookie: 'William Hill' }
-      ]
-    },
-    {
-      id: 'arb2',
-      match: 'Real Madrid vs Barcelona',
-      sport: 'Soccer',
-      roi: 3.45,
-      timestamp: new Date().toISOString(),
-      outcomes: [
-        { name: 'Over 2.5', odds: 1.95, bookie: 'Betfair' },
-        { name: 'Under 2.5', odds: 2.15, bookie: 'DraftKings' }
-      ]
-    }
-  ];
+  const stake1 = (stake * (1/odds1) / (1/odds1 + 1/odds2)).toFixed(2);
+  const stake2 = (stake * (1/odds2) / (1/odds1 + 1/odds2)).toFixed(2);
 
   return (
-    <div className="animate-fadeIn max-w-6xl mx-auto space-y-12 pb-24">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div>
-          <h1 className="text-4xl font-black text-white tracking-tighter uppercase">Live Arbitrage</h1>
-          <p className="text-slate-500 font-medium mt-3 text-sm">Real-time risk-free profit opportunities across global bookmakers.</p>
-        </div>
-        <div className="flex items-center glass-panel p-2 rounded-2xl border border-white/5 shadow-2xl">
-          <div className="flex flex-col px-4">
-             <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-1 opacity-60">Investment</span>
-             <input 
-              type="number" 
-              value={stake} 
-              onChange={(e) => setStake(Number(e.target.value))}
-              className="bg-transparent font-black text-2xl text-white focus:outline-none w-32 tracking-tighter"
-            />
-          </div>
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-500/30 hover:bg-blue-500 transition-all active:scale-95">Set Total Stake</button>
-        </div>
+    <div className="max-w-4xl mx-auto space-y-12 animate-fadeIn">
+      <div className="border-b border-white/5 pb-10">
+        <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-2">Arbitrage Lab</h1>
+        <p className="text-sm font-medium text-slate-500">Dual-market risk neutralizers and ROI calculators.</p>
       </div>
 
-      <div className="grid gap-12">
-        {mockArbs.map((arb, i) => (
-          <div key={arb.id} className="glass-panel rounded-[2.5rem] shadow-2xl border border-white/5 overflow-hidden hover:border-blue-500/30 transition-all duration-500 animate-slideUp" style={{ animationDelay: `${i * 0.15}s` }}>
-            <div className="bg-white/[0.02] px-10 py-8 flex justify-between items-center border-b border-white/5">
-              <div className="flex items-center gap-6">
-                <span className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] bg-blue-500/10 px-4 py-1.5 rounded-xl border border-blue-500/20">{arb.sport}</span>
-                <span className="font-black text-2xl text-white tracking-tighter uppercase">{arb.match}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-8 bg-slate-900/40 backdrop-blur-xl p-10 rounded-3xl border border-white/5 shadow-2xl">
+          <div className="space-y-6">
+            <label className="block">
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 block">Total Capital (USDT)</span>
+              <input
+                type="number"
+                value={stake}
+                onChange={(e) => setStake(Number(e.target.value))}
+                className="w-full bg-slate-800/50 border border-white/10 rounded-2xl px-6 py-4 text-white font-black text-xl focus:outline-none focus:border-blue-500/50 transition-all"
+              />
+            </label>
+            <div className="grid grid-cols-2 gap-6">
+              <label className="block">
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 block">Market A Odds</span>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={odds1}
+                  onChange={(e) => setOdds1(Number(e.target.value))}
+                  className="w-full bg-slate-800/50 border border-white/10 rounded-2xl px-6 py-4 text-white font-black text-xl focus:outline-none focus:border-blue-500/50 transition-all"
+                />
+              </label>
+              <label className="block">
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 block">Market B Odds</span>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={odds2}
+                  onChange={(e) => setOdds2(Number(e.target.value))}
+                  className="w-full bg-slate-800/50 border border-white/10 rounded-2xl px-6 py-4 text-white font-black text-xl focus:outline-none focus:border-blue-500/50 transition-all"
+                />
+              </label>
+            </div>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full bg-blue-600 text-white px-8 py-5 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-xl shadow-blue-500/30 hover:bg-blue-500 transition-all"
+          >
+            Calculate Risk
+          </motion.button>
+        </div>
+
+        <div className={`p-10 rounded-3xl border transition-all duration-700 flex flex-col justify-between ${isArb ? 'bg-green-500/5 border-green-500/20 shadow-[0_0_50px_-12px_rgba(34,197,94,0.2)]' : 'bg-red-500/5 border-red-500/20'}`}>
+          <div>
+            <div className="flex justify-between items-start mb-10">
+              <div className="space-y-1">
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">ROI Potential</span>
+                <h3 className={`text-5xl font-black tracking-tighter ${isArb ? 'text-green-500' : 'text-red-500'}`}>{margin}%</h3>
               </div>
-              <div className="bg-green-500/10 text-green-400 border border-green-500/20 px-6 py-2.5 rounded-2xl text-[11px] font-black shadow-[0_0_20px_rgba(34,197,94,0.1)] tracking-[0.2em] animate-pulse">
-                {arb.roi}% ROI
+              <div className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest ${isArb ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                {isArb ? 'Arb Detected' : 'No Margin'}
               </div>
             </div>
-            <div className="p-12">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {arb.outcomes.map((outcome, idx) => {
-                  const individualStake = (stake * (1 / outcome.odds)) / arb.outcomes.reduce((acc, curr) => acc + (1 / curr.odds), 0);
-                  return (
-                    <div key={idx} className="bg-[#0f172a] border border-white/5 p-8 rounded-[2rem] relative group hover:border-blue-500/30 transition-all duration-300">
-                      <div className="text-[10px] font-black text-slate-500 mb-4 uppercase tracking-[0.2em]">{outcome.bookie}</div>
-                      <div className="font-bold text-slate-200 mb-6 text-sm">{outcome.name}</div>
-                      <div className="flex justify-between items-end">
-                        <div className="text-5xl font-black text-blue-500 group-hover:scale-110 transition-transform tracking-tighter">{outcome.odds}</div>
-                        <div className="text-right">
-                          <div className="text-[10px] font-black text-slate-600 uppercase mb-2 tracking-widest">Stake</div>
-                          <div className="font-black text-white text-xl tracking-tighter">${individualStake.toFixed(2)}</div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+
+            <div className="space-y-8">
+              <div className="flex justify-between items-center p-6 bg-white/5 rounded-2xl border border-white/5">
+                <div className="flex items-center space-x-4">
+                  <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-xs">A</div>
+                  <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">Market Alpha</span>
+                </div>
+                <span className="text-xl font-black text-white">${stake1}</span>
               </div>
-              
-              <div className="mt-12 flex flex-col md:flex-row md:items-center justify-between p-10 bg-green-500/5 rounded-[2.5rem] border border-green-500/10 border-dashed animate-glow">
-                <div className="mb-8 md:mb-0">
-                  <div className="text-[10px] font-black text-green-500 uppercase tracking-[0.4em] mb-3">Guaranteed Profit</div>
-                  <div className="text-5xl font-black text-white tracking-tighter">${(stake * (arb.roi / 100)).toFixed(2)}</div>
+              <div className="flex justify-between items-center p-6 bg-white/5 rounded-2xl border border-white/5">
+                <div className="flex items-center space-x-4">
+                  <div className="h-10 w-10 bg-orange-600 rounded-xl flex items-center justify-center text-white font-black text-xs">B</div>
+                  <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest">Market Beta</span>
                 </div>
-                <div className="flex gap-4">
-                  <button className="flex-1 md:flex-none bg-slate-900 text-slate-300 border border-white/5 px-10 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all active:scale-95">
-                    Analyze Links
-                  </button>
-                  <button className="flex-1 md:flex-none bg-white text-slate-950 px-10 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-2xl active:scale-95">
-                    Execute Orders
-                  </button>
-                </div>
+                <span className="text-xl font-black text-white">${stake2}</span>
               </div>
             </div>
           </div>
-        ))}
-      </div>
-      
-      <div className="p-10 bg-blue-500/5 rounded-[2rem] border border-blue-500/10 relative overflow-hidden group">
-        <h3 className="text-blue-500 font-black text-[11px] uppercase tracking-[0.3em] mb-6 flex items-center">
-          <svg className="h-6 w-6 mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Exchange Integrity Protocol
-        </h3>
-        <p className="text-sm text-slate-500 leading-relaxed font-medium relative z-10 max-w-3xl">
-          Arbitrage involves high execution risk. Odds can change rapidly, and bookmakers may limit or void stakes. Always verify the odds on the source exchange site before placing any bets. Stake amounts are suggested based on real-time Poisson modeling.
-        </p>
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+
+          <div className="mt-10 pt-10 border-t border-white/5 flex gap-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex-1 bg-slate-900 text-slate-300 border border-white/5 px-6 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-800 transition-all"
+            >
+              Export Report
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex-1 bg-white text-slate-950 px-6 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-2xl"
+            >
+              Execute Hedge
+            </motion.button>
+          </div>
+        </div>
       </div>
     </div>
   );

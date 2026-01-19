@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import Arbitrage from './pages/Arbitrage';
@@ -123,18 +124,22 @@ const App: React.FC = () => {
                 <p className="text-sm font-medium text-slate-500 mt-2">Market intelligence and advanced Poisson modeling.</p>
               </div>
               <div className="flex bg-slate-900/50 p-1 rounded-xl border border-white/5 backdrop-blur-md">
-                <button 
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setPredictionSubTab('feed')}
-                  className={`px-8 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${predictionSubTab === 'feed' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:text-white'}`}
+                  className={`px-8 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${predictionSubTab === 'feed' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:text-white'}`}
                 >
                   Market Feed
-                </button>
-                <button 
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => setPredictionSubTab('lab')}
-                  className={`px-8 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all active:scale-95 ${predictionSubTab === 'lab' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:text-white'}`}
+                  className={`px-8 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${predictionSubTab === 'lab' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'text-slate-500 hover:text-white'}`}
                 >
                   Poisson Lab
-                </button>
+                </motion.button>
               </div>
             </div>
 

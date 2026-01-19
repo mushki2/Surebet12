@@ -4,6 +4,17 @@ export interface Source {
   title: string;
 }
 
+export interface Standing {
+  team: string;
+  rank: number;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  points: number;
+  form: ('W' | 'D' | 'L')[];
+}
+
 export interface Match {
   id: string;
   sport: string;
@@ -37,16 +48,7 @@ export interface Match {
       cleanSheets: { home: number; away: number };
     };
   };
-  standings?: {
-    team: string;
-    rank: number;
-    played: number;
-    won: number;
-    drawn: number;
-    lost: number;
-    points: number;
-    form: ('W' | 'D' | 'L')[];
-  }[];
+  standings?: Standing[];
   recentMatches?: {
     home: { opponent: string; score: string; result: 'W' | 'D' | 'L'; date: string }[];
     away: { opponent: string; score: string; result: 'W' | 'D' | 'L'; date: string }[];
