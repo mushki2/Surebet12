@@ -62,3 +62,12 @@ export const parseMatchesCSV = (csvText: string): Match[] => {
     };
   });
 };
+
+export const parseCSV = async (file: File) => {
+    const text = await file.text();
+    // Simplified heuristic: if it looks like standings, parse as standings, otherwise matches
+    if (text.toLowerCase().includes('rank') || text.toLowerCase().includes('points')) {
+        return parseStandingsCSV(text);
+    }
+    return parseMatchesCSV(text);
+};
