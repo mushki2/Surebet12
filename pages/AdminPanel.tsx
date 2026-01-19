@@ -45,9 +45,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onDataUpdate }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12 animate-fadeIn">
-      <div className="border-b border-white/5 pb-10">
-        <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-2">Core Config</h1>
+    <div className="max-w-4xl mx-auto space-y-10 animate-fadeIn">
+      <div className="border-b border-white/5 pb-8">
+        <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-1">Core Config</h1>
         <p className="text-sm font-medium text-slate-500">Platform database management and ingestion engine.</p>
       </div>
 
@@ -74,7 +74,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onDataUpdate }) => {
           </div>
           <div
             onClick={() => standingsInputRef.current?.click()}
-            className="h-48 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/30 transition-all bg-slate-800/20"
+            className="h-32 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/30 transition-all bg-slate-800/20"
           >
             <input type="file" ref={standingsInputRef} className="hidden" accept=".csv" onChange={(e) => handleFileChange(e, 'standings')} />
             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{standingsFile ? standingsFile.name : 'Drop File or Click'}</span>
@@ -97,7 +97,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onDataUpdate }) => {
           </div>
           <div
             onClick={() => matchesInputRef.current?.click()}
-            className="h-48 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-orange-500/30 transition-all bg-slate-800/20"
+            className="h-32 border-2 border-dashed border-white/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-orange-500/30 transition-all bg-slate-800/20"
           >
             <input type="file" ref={matchesInputRef} className="hidden" accept=".csv" onChange={(e) => handleFileChange(e, 'matches')} />
             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{matchesFile ? matchesFile.name : 'Drop File or Click'}</span>

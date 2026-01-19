@@ -24,10 +24,10 @@ const Dashboard: React.FC<DashboardProps> = ({ matches, sources, favorites, togg
   return (
     <div className="space-y-12 animate-fadeIn">
       {/* Header Section */}
-      <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-10 gap-6">
+      <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-8 gap-6">
         <div>
           <div className="flex items-center space-x-3 mb-2">
-            <h1 className="text-4xl font-black text-white tracking-tighter uppercase">Market Feed</h1>
+            <h1 className="text-2xl font-black text-white tracking-tighter uppercase">Market Feed</h1>
             <div className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${dataSource === 'live' || dataSource === 'api' ? 'bg-green-500/10 text-green-500' : 'bg-slate-800 text-slate-500'}`}>
               {dataSource}
             </div>

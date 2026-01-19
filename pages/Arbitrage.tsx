@@ -14,13 +14,13 @@ const Arbitrage: React.FC = () => {
   const stake2 = (stake * (1/odds2) / (1/odds1 + 1/odds2)).toFixed(2);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12 animate-fadeIn">
-      <div className="border-b border-white/5 pb-10">
-        <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-2">Arbitrage Lab</h1>
+    <div className="max-w-4xl mx-auto space-y-10 animate-fadeIn">
+      <div className="border-b border-white/5 pb-8">
+        <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-1">Arbitrage Lab</h1>
         <p className="text-sm font-medium text-slate-500">Dual-market risk neutralizers and ROI calculators.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-8 bg-slate-900/40 backdrop-blur-xl p-10 rounded-3xl border border-white/5 shadow-2xl">
           <div className="space-y-6">
             <label className="block">
@@ -66,10 +66,10 @@ const Arbitrage: React.FC = () => {
 
         <div className={`p-10 rounded-3xl border transition-all duration-700 flex flex-col justify-between ${isArb ? 'bg-green-500/5 border-green-500/20 shadow-[0_0_50px_-12px_rgba(34,197,94,0.2)]' : 'bg-red-500/5 border-red-500/20'}`}>
           <div>
-            <div className="flex justify-between items-start mb-10">
+            <div className="flex justify-between items-start mb-8">
               <div className="space-y-1">
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">ROI Potential</span>
-                <h3 className={`text-5xl font-black tracking-tighter ${isArb ? 'text-green-500' : 'text-red-500'}`}>{margin}%</h3>
+                <h3 className={`text-3xl font-black tracking-tighter ${isArb ? 'text-green-500' : 'text-red-500'}`}>{margin}%</h3>
               </div>
               <div className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest ${isArb ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                 {isArb ? 'Arb Detected' : 'No Margin'}

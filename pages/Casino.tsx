@@ -24,19 +24,19 @@ const Casino: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12 animate-fadeIn">
-      <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-10 gap-6">
+    <div className="max-w-4xl mx-auto space-y-10 animate-fadeIn">
+      <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-8 gap-6">
         <div>
-          <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-2">High Roller</h1>
+          <h1 className="text-2xl font-black text-white tracking-tighter uppercase mb-1">High Roller</h1>
           <p className="text-sm font-medium text-slate-500">Provably fair instant settlement engine.</p>
         </div>
-        <div className="bg-slate-900/80 px-8 py-4 rounded-2xl border border-white/5 shadow-2xl">
+        <div className="bg-slate-900/80 px-6 py-3 rounded-2xl border border-white/5 shadow-2xl">
           <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest block mb-1">Total Liquidity</span>
-          <span className="text-2xl font-black text-white">${balance.toLocaleString()}</span>
+          <span className="text-lg font-black text-white">${balance.toLocaleString()}</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-3xl p-12 flex flex-col items-center justify-center relative overflow-hidden min-h-[400px]">
           <div className="absolute inset-0 bg-blue-600/5 blur-[100px] pointer-events-none"></div>
 
@@ -48,20 +48,20 @@ const Casino: React.FC = () => {
                     key={i}
                     animate={{ y: [0, -20, 0] }}
                     transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
-                    className="h-20 w-16 bg-slate-800 rounded-2xl border border-white/10 flex items-center justify-center text-4xl"
+                    className="h-16 w-12 bg-slate-800 rounded-2xl border border-white/10 flex items-center justify-center text-2xl"
                   >
                     🎰
                   </motion.div>
                 ))}
               </div>
             ) : (
-              <div className="space-y-6">
-                <div className="text-7xl mb-8">💎</div>
+              <div className="space-y-4">
+                <div className="text-4xl mb-6">💎</div>
                 {result !== null && (
                   <motion.div
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className={`text-2xl font-black uppercase tracking-widest ${result > 0 ? 'text-green-500' : 'text-slate-500'}`}
+                    className={`text-lg font-black uppercase tracking-widest ${result > 0 ? 'text-green-500' : 'text-slate-500'}`}
                   >
                     {result > 0 ? `+ $${result}` : 'Try Again'}
                   </motion.div>
@@ -82,7 +82,7 @@ const Casino: React.FC = () => {
               >
                 -
               </motion.button>
-              <span className="text-2xl font-black text-white">${bet}</span>
+              <span className="text-lg font-black text-white">${bet}</span>
               <motion.button
                 whileTap={{ scale: 0.8 }}
                 onClick={() => setBet(bet + 10)}

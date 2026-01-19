@@ -42,9 +42,9 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onSwitchToLogin }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-12 px-6 bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-[40px] shadow-2xl">
+    <div className="max-w-md mx-auto py-10 px-6 bg-slate-900/40 backdrop-blur-xl border border-white/5 rounded-[32px] shadow-2xl">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-black text-white tracking-tighter uppercase mb-2">Create Account</h2>
+        <h2 className="text-xl font-black text-white tracking-tighter uppercase mb-1">Create Account</h2>
         <p className="text-sm font-medium text-slate-500">Join the elite betting intelligence network.</p>
       </div>
 

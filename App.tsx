@@ -120,9 +120,9 @@ const App: React.FC = () => {
       case 'predictions':
         return (
           <div className="space-y-12 animate-fadeIn">
-            <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-10 gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/5 pb-8 gap-6">
               <div>
-                <h1 className="text-4xl font-black text-white tracking-tighter uppercase">Prediction Hub</h1>
+                <h1 className="text-2xl font-black text-white tracking-tighter uppercase">Prediction Hub</h1>
                 <p className="text-sm font-medium text-slate-500 mt-2">Market intelligence and advanced Poisson modeling.</p>
               </div>
               <div className="flex bg-slate-900/50 p-1 rounded-xl border border-white/5 backdrop-blur-md">
@@ -182,7 +182,7 @@ const App: React.FC = () => {
             <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4 shadow-xl">
               <span className="text-white font-black text-xl italic">S</span>
             </div>
-            <span className="text-2xl font-black tracking-tighter text-white uppercase">SureBets<span className="text-blue-500">Odds</span></span>
+            <span className="text-lg font-black tracking-tighter text-white uppercase">SureBets<span className="text-blue-500">Odds</span></span>
           </div>
           <p className="text-slate-500 text-[10px] uppercase font-bold tracking-[0.5em] opacity-60">© {new Date().getFullYear()} SUREBETS ODDS PLATFORM · PROVABLY FAIR</p>
         </div>
