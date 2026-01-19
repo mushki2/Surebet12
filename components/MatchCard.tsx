@@ -33,15 +33,15 @@ const MatchCard: React.FC<MatchCardProps> = ({ match, isFavorite, onToggleFavori
           </motion.button>
         </div>
 
-        <div className="flex items-center justify-between gap-4 mb-8">
-          <div className="flex-1 flex items-center justify-center space-x-4">
-            <div className="h-12 w-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20">{match.homeTeam[0]}</div>
-            <span className="text-sm font-black text-white uppercase tracking-tight truncate max-w-[80px]">{match.homeTeam}</span>
+        <div className="flex items-center justify-between gap-3 mb-6">
+          <div className="flex-1 flex items-center justify-center space-x-3">
+            <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-blue-500/20">{match.homeTeam[0]}</div>
+            <span className="text-xs font-black text-white uppercase tracking-tight truncate max-w-[70px]">{match.homeTeam}</span>
           </div>
-          <div className="text-[10px] font-black text-slate-700 uppercase italic px-3 py-1 bg-slate-800/30 rounded-full">vs</div>
-          <div className="flex-1 flex items-center justify-center space-x-4">
-            <span className="text-sm font-black text-white uppercase tracking-tight truncate max-w-[80px] text-right">{match.awayTeam}</span>
-            <div className="h-12 w-12 bg-orange-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-500/20">{match.awayTeam[0]}</div>
+          <div className="text-[9px] font-black text-slate-700 uppercase italic px-2 py-0.5 bg-slate-800/30 rounded-full">vs</div>
+          <div className="flex-1 flex items-center justify-center space-x-3">
+            <span className="text-xs font-black text-white uppercase tracking-tight truncate max-w-[70px] text-right">{match.awayTeam}</span>
+            <div className="h-10 w-10 bg-orange-600 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-orange-500/20">{match.awayTeam[0]}</div>
           </div>
         </div>
 
